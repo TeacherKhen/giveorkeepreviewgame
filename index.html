@@ -58,7 +58,6 @@
         }
         .screen.active { display: flex; }
 
-        /* Updated: Added slight backdrop blur strictly for the Title Screen view */
         #screenTitle.screen.active {
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -96,27 +95,37 @@
         .btn-orange { background: linear-gradient(135deg, #ff9f43, #ee5253); box-shadow: 0 8px 0 #cd6133; }
         .btn-green { background: linear-gradient(135deg, #2ecc71, #27ae60); box-shadow: 0 8px 0 #1e7e43; }
 
-        /* Updated: Increased size layout for Title action panel buttons */
-        .title-action-panel .btn {
-            padding: 18px 45px;
-            font-size: 1.8rem;
-            border-width: 5px;
-            box-shadow: 0 10px 0 #b33939, 0 12px 24px rgba(0,0,0,0.6);
+        /* Updated: Made Play and Setup buttons much larger */
+        .title-action-panel .btn-giant {
+            padding: 22px 60px;
+            font-size: 2.2rem;
+            border-width: 6px;
+            box-shadow: 0 12px 0 #b33939, 0 15px 30px rgba(0,0,0,0.6);
         }
-        .title-action-panel .btn-blue { box-shadow: 0 10px 0 #227093; }
-        .title-action-panel .btn-orange { box-shadow: 0 10px 0 #cd6133; }
+        .title-action-panel .btn-giant.btn-blue { box-shadow: 0 12px 0 #227093; }
         
-        .title-action-panel .btn:active { 
-            transform: translateY(6px); 
+        .title-action-panel .btn-giant:active { 
+            transform: translateY(8px); 
             box-shadow: 0 4px 0 #b33939, 0 6px 12px rgba(0,0,0,0.4); 
         }
-        .title-action-panel .btn-blue:active { box-shadow: 0 4px 0 #227093; }
-        .title-action-panel .btn-orange:active { box-shadow: 0 4px 0 #cd6133; }
+        .title-action-panel .btn-giant.btn-blue:active { box-shadow: 0 4px 0 #227093; }
 
-        /* Updated: Expanded dimensions to make the title page image look bigger */
+        /* Updated: Made the Hub button significantly smaller */
+        .title-action-panel .btn-mini {
+            padding: 8px 20px;
+            font-size: 1.0rem;
+            border-width: 3px;
+            box-shadow: 0 5px 0 #cd6133, 0 6px 12px rgba(0,0,0,0.4);
+            align-self: center;
+        }
+        .title-action-panel .btn-mini:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #cd6133, 0 4px 6px rgba(0,0,0,0.3);
+        }
+
         .title-image-box {
-            width: 98%;
-            height: 76%;
+            width: 100%;
+            height: 80%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -132,6 +141,7 @@
         .title-action-panel {
             display: flex;
             gap: 15px;
+            align-items: center;
             background: none !important;
             box-shadow: none !important;
             border: none !important;
@@ -278,7 +288,6 @@
             align-items: center;
         }
         
-        /* Updated: Increased dimensions to make the mystery box GIF look significantly bigger */
         .gif-box-wrapper {
             height: 50vh;
             width: 100%;
@@ -341,9 +350,9 @@
                 <img src="titlepage.gif" alt="Game Logo Graphic">
             </div>
             <div class="title-action-panel">
-                <button class="btn" onclick="changeScreen('screenRules')">PLAY</button>
-                <a href="https://teacherkhenlearninghub.blogspot.com/" target="_blank" class="btn btn-orange">HUB</a>
-                <button class="btn btn-blue" onclick="changeScreen('screenSettings')">SETUP</button>
+                <button class="btn btn-giant" onclick="changeScreen('screenRules')">PLAY</button>
+                <a href="https://teacherkhenlearninghub.blogspot.com/" target="_blank" class="btn btn-orange btn-mini">HUB</a>
+                <button class="btn btn-blue btn-giant" onclick="changeScreen('screenSettings')">SETUP</button>
             </div>
         </div>
 
@@ -354,6 +363,7 @@
                     <li>Work with your team to solve the letter box challenge!</li>
                     <li>Choose <strong>KEEP IT</strong> to lock the surprise rewards for your side.</li>
                     <li>Choose <strong>GIVE IT AWAY</strong> to throw the mystery package at your rivals!</li>
+                    <li>If your team gets an answer wrong, the <strong>Mystery Box</strong> appears and gives additional points to the other team!</li>
                     <li>Keep scores up! Scores can never plunge lower than zero points!</li>
                 </ul>
                 <button class="btn btn-green" onclick="startGame()">OPEN GAME GRID 🎮</button>
