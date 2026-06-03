@@ -58,6 +58,13 @@
         }
         .screen.active { display: flex; }
 
+        /* Updated: Added slight backdrop blur strictly for the Title Screen view */
+        #screenTitle.screen.active {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
         h2 { 
             font-family: var(--cute-font); 
             font-size: 3rem; 
@@ -89,20 +96,38 @@
         .btn-orange { background: linear-gradient(135deg, #ff9f43, #ee5253); box-shadow: 0 8px 0 #cd6133; }
         .btn-green { background: linear-gradient(135deg, #2ecc71, #27ae60); box-shadow: 0 8px 0 #1e7e43; }
 
+        /* Updated: Increased size layout for Title action panel buttons */
+        .title-action-panel .btn {
+            padding: 18px 45px;
+            font-size: 1.8rem;
+            border-width: 5px;
+            box-shadow: 0 10px 0 #b33939, 0 12px 24px rgba(0,0,0,0.6);
+        }
+        .title-action-panel .btn-blue { box-shadow: 0 10px 0 #227093; }
+        .title-action-panel .btn-orange { box-shadow: 0 10px 0 #cd6133; }
+        
+        .title-action-panel .btn:active { 
+            transform: translateY(6px); 
+            box-shadow: 0 4px 0 #b33939, 0 6px 12px rgba(0,0,0,0.4); 
+        }
+        .title-action-panel .btn-blue:active { box-shadow: 0 4px 0 #227093; }
+        .title-action-panel .btn-orange:active { box-shadow: 0 4px 0 #cd6133; }
+
+        /* Updated: Expanded dimensions to make the title page image look bigger */
         .title-image-box {
-            width: 95%;
-            height: 72%;
+            width: 98%;
+            height: 76%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         .title-image-box img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
             border-radius: 20px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+            filter: drop-shadow(0 12px 24px rgba(0,0,0,0.7));
         }
         .title-action-panel {
             display: flex;
@@ -253,21 +278,25 @@
             align-items: center;
         }
         
-        /* Updated: Modified to load custom mystery box GIF asset seamlessly */
+        /* Updated: Increased dimensions to make the mystery box GIF look significantly bigger */
         .gif-box-wrapper {
-            max-height: 35vh;
-            max-width: 250px;
+            height: 50vh;
+            width: 100%;
+            max-width: 350px;
             cursor: pointer;
             margin-bottom: 25px;
             animation: floatAnim 1.8s ease-in-out infinite alternate;
             transition: transform 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .gif-box-wrapper:hover {
             transform: scale(1.08);
         }
         .gif-box-wrapper img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: contain;
         }
 
@@ -364,7 +393,7 @@
                 </div>
 
                 <div id="mysteryOverlay" class="mystery-overlay">
-                    <h2 id="mysteryTitle" style="font-size:2.5rem; margin-bottom:30px;">Wrong Answer! Tap to Reveal Gift Points for rivals!🎁</h2>
+                    <h2 id="mysteryTitle" style="font-size:3.5rem; margin-bottom:15px;">Mystery Box 🎁</h2>
                     
                     <div id="gifBoxWrapper" class="gif-box-wrapper" onclick="revealMysteryGift()">
                         <img src="mystery box.gif" alt="Mystery Gift Box Graphic Target">
@@ -621,7 +650,7 @@
             isAnswerLocked = false; 
             
             document.getElementById('mysteryOverlay').style.display = 'none';
-            document.getElementById('gifBoxWrapper').style.display = 'block';
+            document.getElementById('gifBoxWrapper').style.display = 'flex';
             document.getElementById('mysteryRewardDisplay').style.display = 'none';
             document.getElementById('btnMysteryClose').style.display = 'none';
             document.getElementById('mysteryTitle').style.display = 'block';
