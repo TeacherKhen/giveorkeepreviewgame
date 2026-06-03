@@ -89,7 +89,6 @@
         .btn-orange { background: linear-gradient(135deg, #ff9f43, #ee5253); box-shadow: 0 8px 0 #cd6133; }
         .btn-green { background: linear-gradient(135deg, #2ecc71, #27ae60); box-shadow: 0 8px 0 #1e7e43; }
 
-        /* Modified: Increased title box dimension framework footprint from 80%/65% to 95%/72% */
         .title-image-box {
             width: 95%;
             height: 72%;
@@ -176,7 +175,6 @@
         }
         .turn-dot { height: 25px; width: 25px; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.8); border: 2px solid #fff; }
 
-        /* Modified: Refined containment boundaries to comfortably fit layout structures without zooming out */
         .content-card {
             background: rgba(255, 255, 255, 0.98); width: 95%; height: 78vh; border-radius: 35px;
             border: 8px solid var(--team-1-color); padding: 15px; display: flex; flex-direction: column;
@@ -225,7 +223,6 @@
             flex: 1;
         }
 
-        /* Nav Header Utility Styles */
         .q-nav-header {
             width: 100%;
             display: flex;
@@ -244,7 +241,6 @@
         }
         .nav-icon-btn:hover { transform: scale(1.15); }
 
-        /* 3D Kid-Friendly Mystery Box Layer styles */
         .mystery-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -256,45 +252,29 @@
             justify-content: center;
             align-items: center;
         }
-        .box-container 3d {
-            width: 160px;
-            height: 160px;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: rotateX(-20deg) rotateY(45deg);
+        
+        /* Updated: Modified to load custom mystery box GIF asset seamlessly */
+        .gif-box-wrapper {
+            max-height: 35vh;
+            max-width: 250px;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            margin-bottom: 40px;
-            animation: floatAnim 2s ease-in-out infinite alternate;
+            margin-bottom: 25px;
+            animation: floatAnim 1.8s ease-in-out infinite alternate;
+            transition: transform 0.2s;
         }
-        .box-container-3d:hover {
-            transform: rotateX(-20deg) rotateY(65deg) scale(1.1);
+        .gif-box-wrapper:hover {
+            transform: scale(1.08);
         }
+        .gif-box-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
         @keyframes floatAnim {
-            0% { transform: rotateX(-20deg) rotateY(45deg) translateY(0px); }
-            100% { transform: rotateX(-20deg) rotateY(45deg) translateY(-15px); }
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-15px); }
         }
-        .box-side {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            background: linear-gradient(135deg, #f39c12, #d35400);
-            border: 6px solid #fff;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: var(--cute-font);
-            font-size: 5rem;
-            color: #fff;
-            text-shadow: 3px 3px 0 #000;
-        }
-        .side-front  { transform: translateZ(80px); }
-        .side-back   { transform: rotateY(180deg) translateZ(80px); background: #b33939; }
-        .side-left   { transform: rotateY(-90deg) translateZ(80px); background: #e67e22; }
-        .side-right  { transform: rotateY(90deg) translateZ(80px); background: #e67e22; }
-        .side-top    { transform: rotateX(90deg) translateZ(80px); background: #f1c40f; height: 160px; }
-        .side-bottom { transform: rotateX(-90deg) translateZ(80px); background: #d35400; }
         
         .box-reward-reveal {
             font-family: var(--cute-font);
@@ -329,7 +309,7 @@
 
         <div id="screenTitle" class="screen active">
             <div class="title-image-box">
-                <img src="title page.gif" alt="Game Logo Graphic">
+                <img src="titlepage.gif" alt="Game Logo Graphic">
             </div>
             <div class="title-action-panel">
                 <button class="btn" onclick="changeScreen('screenRules')">PLAY</button>
@@ -385,14 +365,11 @@
 
                 <div id="mysteryOverlay" class="mystery-overlay">
                     <h2 id="mysteryTitle" style="font-size:2.5rem; margin-bottom:30px;">Wrong Answer! Tap to Reveal Gift Points for rivals!🎁</h2>
-                    <div id="3dBox" class="box-container-3d" onclick="revealMysteryGift()">
-                        <div class="box-side side-front">?</div>
-                        <div class="box-side side-back">?</div>
-                        <div class="box-side side-left">?</div>
-                        <div class="box-side side-right">?</div>
-                        <div class="box-side side-top">?</div>
-                        <div class="box-side side-bottom">?</div>
+                    
+                    <div id="gifBoxWrapper" class="gif-box-wrapper" onclick="revealMysteryGift()">
+                        <img src="mystery box.gif" alt="Mystery Gift Box Graphic Target">
                     </div>
+                    
                     <div id="mysteryRewardDisplay" class="box-reward-reveal"></div>
                     <button id="btnMysteryClose" class="btn btn-blue" style="display:none; margin-top:20px;" onclick="closeMysterySequence()">CONTINUE ➡️</button>
                 </div>
@@ -643,9 +620,8 @@
             let q = questions[qi];
             isAnswerLocked = false; 
             
-            // Clear out overlay parameters safely
             document.getElementById('mysteryOverlay').style.display = 'none';
-            document.getElementById('3dBox').style.display = 'block';
+            document.getElementById('gifBoxWrapper').style.display = 'block';
             document.getElementById('mysteryRewardDisplay').style.display = 'none';
             document.getElementById('btnMysteryClose').style.display = 'none';
             document.getElementById('mysteryTitle').style.display = 'block';
@@ -725,30 +701,24 @@
             }
         }
 
-        /* Home Navigation Link Implementation */
         function goToGridScreen() {
             playSound('sndClick');
             changeScreen('screenMain');
         }
 
-        /* Wrong Answer Sequence Manager */
         function triggerWrongAnswerSequence() {
-            // Generate integer outcome values from 5 to 50 dynamically
             pendingWrongPoints = Math.floor(Math.random() * 46) + 5;
-            
             document.getElementById('mysteryOverlay').style.display = 'flex';
             playSound('sndReveal');
         }
 
-        /* 3D Box Item Click Action Handler */
         function revealMysteryGift() {
             playSound('sndReveal');
             
-            // Direct award calculated points pool over to rival team side setup
             let opponentTeam = (currentTeam === 'A') ? 'B' : 'A';
             scores[opponentTeam] += pendingWrongPoints;
             
-            document.getElementById('3dBox').style.display = 'none';
+            document.getElementById('gifBoxWrapper').style.display = 'none';
             document.getElementById('mysteryTitle').style.display = 'none';
             
             let rewardDisplay = document.getElementById('mysteryRewardDisplay');
@@ -759,7 +729,6 @@
             updateScores();
         }
 
-        /* Close Wrong Answer System View */
         function closeMysterySequence() {
             used[activeIdx] = true;
             nextTurn();
