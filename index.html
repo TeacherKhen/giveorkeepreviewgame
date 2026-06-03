@@ -95,7 +95,7 @@
         .btn-orange { background: linear-gradient(135deg, #ff9f43, #ee5253); box-shadow: 0 8px 0 #cd6133; }
         .btn-green { background: linear-gradient(135deg, #2ecc71, #27ae60); box-shadow: 0 8px 0 #1e7e43; }
 
-        /* Updated: Made Play and Setup buttons much larger */
+        /* Play and Setup buttons much larger */
         .title-action-panel .btn-giant {
             padding: 22px 60px;
             font-size: 2.2rem;
@@ -110,7 +110,7 @@
         }
         .title-action-panel .btn-giant.btn-blue:active { box-shadow: 0 4px 0 #227093; }
 
-        /* Updated: Made the Hub button significantly smaller */
+        /* Hub button significantly smaller */
         .title-action-panel .btn-mini {
             padding: 8px 20px;
             font-size: 1.0rem;
@@ -216,6 +216,7 @@
             justify-content: space-between; align-items: center; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
             position: relative;
         }
+        
         .q-scroll-body {
             width: 100%;
             flex: 1;
@@ -223,13 +224,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding: 5px;
-            gap: 10px;
+            justify-content: center; /* Adjusted to keep elements beautifully centered vertically */
+            padding: 10px;
+            gap: 15px;
         }
-        .question-text { font-size: 2.3rem; color: #1e272e; font-weight: bold; margin: 5px; word-break: break-word; }
+        
+        .question-text { font-size: 2.3rem; color: #1e272e; font-weight: bold; margin: 5px; word-break: break-word; transition: font-size 0.2s ease; }
         .options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 90%; }
-        .options-container .btn { text-transform: none !important; margin: 5px; padding: 10px 20px; font-size: 1.2rem; }
+        .options-container .btn { text-transform: none !important; margin: 5px; padding: 12px 20px; font-size: 1.2rem; transition: all 0.2s ease; }
+
+        /* Added: Dynamic adjustment handling when NO images are loaded */
+        .q-scroll-body.no-image-layout {
+            gap: 30px;
+        }
+        .q-scroll-body.no-image-layout .question-text {
+            font-size: 3.4rem; /* Scaled up text to look grand and proportioned */
+            margin-bottom: 15px;
+        }
+        .q-scroll-body.no-image-layout .options-container {
+            width: 95%;
+            gap: 20px;
+        }
+        .q-scroll-body.no-image-layout .options-container .btn {
+            padding: 20px 30px; /* Enhanced options sizes */
+            font-size: 1.6rem;
+        }
+        .q-scroll-body.no-image-layout #idAns {
+            font-size: 3.8rem !important; /* Scaled identification answer */
+        }
 
         .settings-panel { background: #fff; border-radius: 25px; padding: 30px; width: 95%; height: 85vh; overflow-y: auto; color: #333; border: 5px solid #2f3542; }
         .settings-panel h2, .settings-panel h3 { text-shadow: none; color: #2f3542; }
@@ -385,7 +407,7 @@
                     <button class="nav-icon-btn" style="color:#ee5253; font-weight:bold;" onclick="triggerWrongAnswerSequence()" title="Mark Answer Wrong">❌</button>
                 </div>
 
-                <div class="q-scroll-body">
+                <div id="qScrollArea" class="q-scroll-body">
                     <div id="qText" class="question-text"></div>
                     <img id="qImg" src="" style="max-height:22vh; object-fit:contain; border-radius:15px; border:4px solid #2f3542; display:none;">
                     
@@ -669,8 +691,18 @@
             shell.style.borderColor = (currentTeam === 'A') ? 'var(--team-1-color)' : 'var(--team-2-color)';
 
             document.getElementById('qText').innerText = q.text;
+            
+            // Layout Adjustments triggered dynamically depending on Image Presence
+            let scrollArea = document.getElementById('qScrollArea');
             let img = document.getElementById('qImg');
-            if(q.image) { img.src = q.image; img.style.display = 'block'; } else { img.style.display = 'none'; }
+            if(q.image) { 
+                img.src = q.image; 
+                img.style.display = 'block'; 
+                scrollArea.classList.remove('no-image-layout');
+            } else { 
+                img.style.display = 'none'; 
+                scrollArea.classList.add('no-image-layout');
+            }
             
             let opts = document.getElementById('qOptions');
             let idArea = document.getElementById('qIdArea');
@@ -687,7 +719,6 @@
                         let b = document.createElement('button');
                         b.className = 'btn';
                         b.style.color = '#fff';
-                        b.style.fontSize = '1.3rem';
                         b.innerText = o;
                         b.onclick = () => { 
                             if (isAnswerLocked) return; 
