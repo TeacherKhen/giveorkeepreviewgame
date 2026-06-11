@@ -349,11 +349,24 @@
             50% { transform: scale(1.1); }
             100% { transform: scale(1); opacity: 1; }
         }
+
+        /* Confetti particle elements configuration layout setup */
+        .confetti-particle {
+            position: absolute;
+            z-index: 999;
+            top: -10px;
+            border-radius: 3px;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="game-wrapper">
+    <div class="game-wrapper" id="gameMainWrapper">
         <audio id="bgMusic" loop src="background music.mp3"></audio>
         <audio id="sndClick" src="click.wav"></audio>
         <audio id="sndAdd" src="add.wav"></audio>
@@ -478,6 +491,23 @@
                 </div>
             </div>
         </div>
+
+        <div id="screenPodium" class="screen">
+            <div class="content-card" style="height: 70vh; justify-content: center; border-color: #eccc68; background: rgba(255, 255, 255, 0.99);">
+                <div style="font-size: 6rem; margin-bottom: 10px; animation: floatAnim 1.5s ease-in-out infinite alternate;">👑</div>
+                <h2 style="color: #2f3542; text-shadow: none; font-size: 3.5rem; margin: 0;">FINAL TOURNAMENT RESULTS</h2>
+                
+                <div id="podiumWinnerText" style="font-size: 4.5rem; color: #ff9f43; font-weight: bold; margin: 20px 0; text-shadow: 3px 3px 0px #000; font-family: var(--cute-font);"></div>
+                
+                <div style="display: flex; gap: 40px; margin: 20px 0; background: #f1f2f6; padding: 20px 50px; border-radius: 25px; border: 4px solid #ced6e0;">
+                    <div style="font-size: 2.2rem; font-weight: bold; color: var(--team-1-color);">TEAM 1<br><span id="podiumScoreA" style="font-size: 3.5rem;">0</span></div>
+                    <div style="font-size: 3rem; font-weight: bold; color: #747d8c; align-self: center;">VS</div>
+                    <div style="font-size: 2.2rem; font-weight: bold; color: var(--team-2-color);">TEAM 2<br><span id="podiumScoreB" style="font-size: 3.5rem;">0</span></div>
+                </div>
+
+                <button class="btn btn-green btn-giant" style="margin-top: 25px;" onclick="startGame()">PLAY AGAIN 🎮</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -490,6 +520,7 @@
         let isMusicPlaying = true;
         let isAnswerLocked = false; 
         let pendingWrongPoints = 0;
+        let confettiInterval = null;
 
         const outcomes = ["+5", "+10", "+20", "+30", "+50", "-5", "-10", "-25", "-20", "-30", "swap score", "lose all points"];
 
@@ -501,6 +532,11 @@
         };
 
         function changeScreen(id) {
+            if (id !== 'screenPodium' && confettiInterval) {
+                clearInterval(confettiInterval);
+                document.querySelectorAll('.confetti-particle').forEach(p => p.remove());
+            }
+
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             document.getElementById('globalScoreboard').style.display = (['screenMain', 'screenQuestion', 'screenOutcome'].includes(id)) ? 'flex' : 'none';
@@ -572,11 +608,7 @@
                 if (item.type.indexOf("image") !== -1) {
                     const reader = new FileReader();
                     reader.onload = (event) => {
-                        // Store the image string inside the global questions tracking variable safely
                         questions[i].image = event.target.result;
-                        
-                        // FIX: Instead of calling buildSetup() which forces all text inputs to reload from empty data,
-                        // we directly inject the new visual preview dynamically into the specific target slot row block!
                         const pasteBox = document.getElementById(`paste_${i}`);
                         if (pasteBox) {
                             pasteBox.innerHTML = `<img src="${event.target.result}" style="height:65px; border-radius:5px;">`;
@@ -828,7 +860,7 @@
                 let temp = scores.A; scores.A = scores.B; scores.B = temp;
                 chosenSound = 'sndSwap';
             } else if (val == 'lose all points') {
-                scores[target] = 0;
+                scores[target] = 0; // FIX: Current score explicitly turns to 0 and does NOT swap with the other team.
                 chosenSound = 'sndLose';
             }
 
@@ -861,11 +893,86 @@
             buildGrid(); 
             
             if(used.every(v => v === true)) {
-                alert(`Game Over! Final Results -> Team 1: ${scores.A} | Team 2: ${scores.B}`);
-                changeScreen('screenTitle');
+                showFinalPodium();
             } else {
                 changeScreen('screenMain');
             }
+        }
+
+        function showFinalPodium() {
+            document.getElementById('podiumScoreA').innerText = scores.A;
+            document.getElementById('podiumScoreB').innerText = scores.B;
+            
+            let winnerLabel = document.getElementById('podiumWinnerText');
+            if (scores.A > scores.B) {
+                winnerLabel.innerText = "🏆 TEAM 1 WINS!";
+                winnerLabel.style.color = "var(--team-1-color)";
+            } else if (scores.B > scores.A) {
+                winnerLabel.innerText = "🏆 TEAM 2 WINS!";
+                winnerLabel.style.color = "var(--team-2-color)";
+            } else {
+                winnerLabel.innerText = "🤝 IT'S A TIE SCORE!";
+                winnerLabel.style.color = "#747d8c";
+            }
+            
+            changeScreen('screenPodium');
+            playVictoryFanfare();
+            triggerConfettiExplosion();
+        }
+
+        function playVictoryFanfare() {
+            try {
+                let ctx = new (window.AudioContext || window.webkitAudioContext)();
+                let now = ctx.currentTime;
+                let vol = document.getElementById('volSFX').value * 0.5;
+                
+                let notes = [261.63, 329.63, 392.00, 523.25, 392.00, 523.25, 659.25];
+                let rhythms = [0.15, 0.15, 0.15, 0.3, 0.15, 0.15, 0.6];
+                let accumTime = now;
+
+                notes.forEach((freq, idx) => {
+                    let osc = ctx.createOscillator();
+                    let gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, accumTime);
+                    
+                    gain.gain.setValueAtTime(vol, accumTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, accumTime + rhythms[idx] - 0.02);
+                    
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(accumTime);
+                    osc.stop(accumTime + rhythms[idx]);
+                    accumTime += rhythms[idx];
+                });
+            } catch(e) {}
+        }
+
+        function triggerConfettiExplosion() {
+            const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#ff6b81', '#70a1ff'];
+            const container = document.getElementById('gameMainWrapper');
+            
+            confettiInterval = setInterval(() => {
+                for (let i = 0; i < 6; i++) {
+                    let particle = document.createElement('div');
+                    particle.className = 'confetti-particle';
+                    
+                    let size = Math.random() * 8 + 6;
+                    let left = Math.random() * 100;
+                    let duration = Math.random() * 2.5 + 2;
+                    let color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    particle.style.left = left + '%';
+                    particle.style.backgroundColor = color;
+                    particle.style.animationDuration = duration + 's';
+                    
+                    container.appendChild(particle);
+                    
+                    setTimeout(() => { particle.remove(); }, duration * 1000);
+                }
+            }, 180);
         }
 
         function startGame() { 
