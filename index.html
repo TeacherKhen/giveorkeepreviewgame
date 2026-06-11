@@ -224,7 +224,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Adjusted to keep elements beautifully centered vertically */
+            justify-content: center; 
             padding: 10px;
             gap: 15px;
         }
@@ -233,12 +233,12 @@
         .options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 90%; }
         .options-container .btn { text-transform: none !important; margin: 5px; padding: 12px 20px; font-size: 1.2rem; transition: all 0.2s ease; }
 
-        /* Added: Dynamic adjustment handling when NO images are loaded */
+        /* Dynamic adjustment handling when NO images are loaded */
         .q-scroll-body.no-image-layout {
             gap: 30px;
         }
         .q-scroll-body.no-image-layout .question-text {
-            font-size: 3.4rem; /* Scaled up text to look grand and proportioned */
+            font-size: 3.4rem; 
             margin-bottom: 15px;
         }
         .q-scroll-body.no-image-layout .options-container {
@@ -246,11 +246,11 @@
             gap: 20px;
         }
         .q-scroll-body.no-image-layout .options-container .btn {
-            padding: 20px 30px; /* Enhanced options sizes */
+            padding: 20px 30px; 
             font-size: 1.6rem;
         }
         .q-scroll-body.no-image-layout #idAns {
-            font-size: 3.8rem !important; /* Scaled identification answer */
+            font-size: 3.8rem !important; 
         }
 
         .settings-panel { background: #fff; border-radius: 25px; padding: 30px; width: 95%; height: 85vh; overflow-y: auto; color: #333; border: 5px solid #2f3542; }
@@ -572,8 +572,15 @@
                 if (item.type.indexOf("image") !== -1) {
                     const reader = new FileReader();
                     reader.onload = (event) => {
+                        // Store the image string inside the global questions tracking variable safely
                         questions[i].image = event.target.result;
-                        buildSetup();
+                        
+                        // FIX: Instead of calling buildSetup() which forces all text inputs to reload from empty data,
+                        // we directly inject the new visual preview dynamically into the specific target slot row block!
+                        const pasteBox = document.getElementById(`paste_${i}`);
+                        if (pasteBox) {
+                            pasteBox.innerHTML = `<img src="${event.target.result}" style="height:65px; border-radius:5px;">`;
+                        }
                     };
                     reader.readAsDataURL(item.getAsFile());
                 }
@@ -692,7 +699,6 @@
 
             document.getElementById('qText').innerText = q.text;
             
-            // Layout Adjustments triggered dynamically depending on Image Presence
             let scrollArea = document.getElementById('qScrollArea');
             let img = document.getElementById('qImg');
             if(q.image) { 
