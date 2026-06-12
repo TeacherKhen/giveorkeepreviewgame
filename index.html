@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Give or Keep - Final Version</title>
+    <title>Give or Keep - Classroom Edition</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;700&family=Press+Start+2P&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
         }
 
         .screen {
@@ -69,67 +69,47 @@
             font-size: 3rem; 
             color: #ffffff; 
             text-shadow: 4px 4px 0px #000000, -2px -2px 0px #000000, 2px -2px 0px #000000, -2px 2px 0px #000000;
-            margin: 10px 0; 
+            margin: 8px 0; 
         }
-        .arcade-text { font-family: var(--arcade-font); font-size: 1.5rem; }
 
         .btn {
             background: linear-gradient(135deg, #FF6B6B, #EE5253);
             color: white;
             border: 4px solid #fff;
-            padding: 14px 35px;
-            font-size: 1.4rem;
+            padding: 12px 30px;
+            font-size: 1.3rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 0 #b33939, 0 10px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 6px 0 #b33939, 0 8px 15px rgba(0,0,0,0.4);
             transition: all 0.1s ease;
-            margin: 12px;
+            margin: 8px;
             display: inline-block;
             text-decoration: none;
             text-transform: uppercase;
             text-shadow: 2px 2px 0px #000;
         }
-        .btn:active { transform: translateY(6px); box-shadow: 0 2px 0 #b33939, 0 5px 10px rgba(0,0,0,0.4); }
-        .btn-blue { background: linear-gradient(135deg, #54a0ff, #2e86de); box-shadow: 0 8px 0 #227093; }
-        .btn-orange { background: linear-gradient(135deg, #ff9f43, #ee5253); box-shadow: 0 8px 0 #cd6133; }
-        .btn-green { background: linear-gradient(135deg, #2ecc71, #27ae60); box-shadow: 0 8px 0 #1e7e43; }
-
-        /* Play and Setup buttons much larger */
-        .title-action-panel .btn-giant {
-            padding: 22px 60px;
-            font-size: 2.2rem;
-            border-width: 6px;
-            box-shadow: 0 12px 0 #b33939, 0 15px 30px rgba(0,0,0,0.6);
-        }
-        .title-action-panel .btn-giant.btn-blue { box-shadow: 0 12px 0 #227093; }
+        .btn:active:not(.btn-disabled) { transform: translateY(4px); box-shadow: 0 2px 0 #b33939, 0 4px 8px rgba(0,0,0,0.3); }
+        .btn-blue { background: linear-gradient(135deg, #54a0ff, #2e86de); box-shadow: 0 6px 0 #227093; }
+        .btn-orange { background: linear-gradient(135deg, #ff9f43, #ee5253); box-shadow: 0 6px 0 #cd6133; }
+        .btn-green { background: linear-gradient(135deg, #2ecc71, #27ae60); box-shadow: 0 6px 0 #1e7e43; }
+        .btn-purple { background: linear-gradient(135deg, #a55eea, #8854d0); box-shadow: 0 6px 0 #6d3ca3; }
         
-        .title-action-panel .btn-giant:active { 
-            transform: translateY(8px); 
-            box-shadow: 0 4px 0 #b33939, 0 6px 12px rgba(0,0,0,0.4); 
-        }
-        .title-action-panel .btn-giant.btn-blue:active { box-shadow: 0 4px 0 #227093; }
-
-        /* Hub button significantly smaller */
-        .title-action-panel .btn-mini {
-            padding: 8px 20px;
-            font-size: 1.0rem;
-            border-width: 3px;
-            box-shadow: 0 5px 0 #cd6133, 0 6px 12px rgba(0,0,0,0.4);
-            align-self: center;
-        }
-        .title-action-panel .btn-mini:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 0 #cd6133, 0 4px 6px rgba(0,0,0,0.3);
+        .btn-disabled {
+            background: #a4b0be !important;
+            border-color: #ced6e0 !important;
+            box-shadow: 0 6px 0 #747d8c !important;
+            cursor: not-allowed !important;
+            opacity: 0.6;
         }
 
         .title-image-box {
             width: 100%;
-            height: 80%;
+            height: 70%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
         .title-image-box img {
             max-width: 100%;
@@ -138,16 +118,23 @@
             border-radius: 20px;
             filter: drop-shadow(0 12px 24px rgba(0,0,0,0.7));
         }
+
         .title-action-panel {
             display: flex;
             gap: 15px;
             align-items: center;
-            background: none !important;
-            box-shadow: none !important;
-            border: none !important;
         }
 
-        .grid-az { display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; width: 95%; height: 65vh; }
+        .title-action-panel .btn-giant {
+            padding: 22px 60px;
+            font-size: 2.2rem;
+            border-width: 6px;
+            box-shadow: 0 12px 0 #b33939, 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .title-action-panel .btn-giant.btn-blue { box-shadow: 0 12px 0 #227093; }
+        .title-action-panel .btn-mini { padding: 8px 20px; font-size: 1.0rem; border-width: 3px; box-shadow: 0 5px 0 #cd6133; align-self: center; }
+
+        .grid-az { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; width: 95%; height: 65vh; }
         .letter-box {
             background: linear-gradient(135deg, #ffffff, #eccc68); 
             border: 5px solid #2f3542; 
@@ -174,129 +161,134 @@
 
         .scoreboard {
             display: flex; justify-content: space-around; width: 95%;
-            background: rgba(0, 0, 0, 0.9); padding: 15px; border-radius: 25px; border: 4px solid #fff;
+            background: rgba(0, 0, 0, 0.9); padding: 10px; border-radius: 25px; border: 4px solid #fff;
             box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         .team-box { 
             font-family: var(--arcade-font); 
-            font-size: 1.6rem; 
-            padding: 5px 25px; 
+            font-size: 1.4rem; 
+            padding: 5px 20px; 
             color: #fff; 
             text-shadow: 3px 3px 0px #000; 
-            transition: all 0.3s ease;
         }
-        .team-box span {
-            font-size: 2.2rem;
-            margin-left: 5px;
-        }
+        .team-box span { font-size: 2rem; margin-left: 5px; }
         .team-a { color: #54a0ff; }
         .team-b { color: #ff6b6b; }
         
-        .team-a.active-team-turn-indicator { 
-            border-bottom: 5px solid #ff9f43; 
-            transform: scale(1.05);
-            text-shadow: 0 0 10px #54a0ff, 0 0 20px #54a0ff, 3px 3px 0px #000;
-        }
-        .team-b.active-team-turn-indicator { 
-            border-bottom: 5px solid #ff9f43; 
-            transform: scale(1.05);
-            text-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b, 3px 3px 0px #000;
-        }
+        .team-a.active-team-turn-indicator { border-bottom: 5px solid #ff9f43; text-shadow: 0 0 10px #54a0ff, 3px 3px 0px #000; }
+        .team-b.active-team-turn-indicator { border-bottom: 5px solid #ff9f43; text-shadow: 0 0 10px #ff6b6b, 3px 3px 0px #000; }
         
         .turn-container {
-            display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px;
-            background: rgba(0, 0, 0, 0.7); padding: 10px 30px; border-radius: 40px; border: 2px solid rgba(255,255,255,0.3);
+            display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.7); padding: 8px 25px; border-radius: 40px; border: 2px solid rgba(255,255,255,0.3);
         }
-        .turn-dot { height: 25px; width: 25px; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.8); border: 2px solid #fff; }
+        .turn-dot { height: 20px; width: 20px; border-radius: 50%; display: inline-block; border: 2px solid #fff; }
 
         .content-card {
             background: rgba(255, 255, 255, 0.98); width: 95%; height: 78vh; border-radius: 35px;
             border: 8px solid var(--team-1-color); padding: 15px; display: flex; flex-direction: column;
             justify-content: space-between; align-items: center; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            position: relative;
+            position: relative; overflow: hidden;
         }
         
         .q-scroll-body {
             width: 100%;
             flex: 1;
-            overflow-y: auto;
             display: flex;
-            flex-direction: column;
+            flex-direction: row; 
             align-items: center;
             justify-content: center; 
-            padding: 10px;
-            gap: 15px;
-        }
-        
-        .question-text { font-size: 2.3rem; color: #1e272e; font-weight: bold; margin: 5px; word-break: break-word; transition: font-size 0.2s ease; }
-        .options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 90%; }
-        .options-container .btn { text-transform: none !important; margin: 5px; padding: 12px 20px; font-size: 1.2rem; transition: all 0.2s ease; }
-
-        /* Dynamic adjustment handling when NO images are loaded */
-        .q-scroll-body.no-image-layout {
-            gap: 30px;
-        }
-        .q-scroll-body.no-image-layout .question-text {
-            font-size: 3.4rem; 
-            margin-bottom: 15px;
-        }
-        .q-scroll-body.no-image-layout .options-container {
-            width: 95%;
+            padding: 5px;
             gap: 20px;
+            overflow: hidden;
         }
-        .q-scroll-body.no-image-layout .options-container .btn {
-            padding: 20px 30px; 
-            font-size: 1.6rem;
-        }
-        .q-scroll-body.no-image-layout #idAns {
-            font-size: 3.8rem !important; 
-        }
-
-        .settings-panel { background: #fff; border-radius: 25px; padding: 30px; width: 95%; height: 85vh; overflow-y: auto; color: #333; border: 5px solid #2f3542; }
-        .settings-panel h2, .settings-panel h3 { text-shadow: none; color: #2f3542; }
-        .q-row { border: 3px solid #ced6e0; padding: 20px; margin-bottom: 20px; border-radius: 16px; border-left: 10px solid var(--team-1-color); background: #f1f2f6; }
-        .correct-radio { transform: scale(1.6); cursor: pointer; margin-right: 8px; }
-        .opt-input-row { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 5px; }
-        input[type="text"], select { padding: 10px; font-size: 1.1rem; border-radius: 8px; border: 2px solid #ced6e0; font-weight: bold; }
         
-        .volume-control-box {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-            background: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #ced6e0;
-        }
-        .volume-row {
+        .q-left-panel {
+            flex: 1;
+            max-width: 40%;
+            height: 100%;
             display: flex;
             align-items: center;
-            gap: 15px;
-            font-weight: bold;
+            justify-content: center;
+            overflow: hidden;
         }
-        .volume-row input[type="range"] {
-            flex: 1;
+        .q-left-panel img {
+            max-width: 100%;
+            max-height: 38vh; 
+            object-fit: contain;
+            border-radius: 15px;
+            border: 4px solid #2f3542;
         }
+
+        .q-right-panel {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            gap: 10px;
+            overflow: hidden;
+        }
+
+        .question-text { 
+            font-size: 2.8rem; 
+            color: #1e272e; 
+            font-weight: bold; 
+            margin: 0; 
+            word-break: break-word; 
+            line-height: 1.25;
+            max-height: 18vh;
+            overflow-y: auto;
+        }
+        
+        .options-container { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            width: 100%; 
+        }
+        .options-container .btn { 
+            text-transform: none !important; 
+            margin: 0; 
+            padding: 12px 15px; 
+            font-size: 1.8rem; 
+            line-height: 1.2;
+            border-radius: 15px;
+        }
+
+        .q-scroll-body.no-image-layout { flex-direction: column; gap: 15px; }
+        .q-scroll-body.no-image-layout .q-left-panel { display: none; }
+        .q-scroll-body.no-image-layout .q-right-panel { flex: 1; max-width: 95%; }
+        .q-scroll-body.no-image-layout .question-text { font-size: 3.4rem; max-height: 25vh; }
+        .q-scroll-body.no-image-layout .options-container .btn { padding: 18px 25px; font-size: 2.2rem; }
 
         .q-nav-header {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 10px;
-            margin-bottom: 5px;
+            padding: 0 5px;
+            margin-bottom: 2px;
             flex-shrink: 0;
         }
-        .nav-icon-btn {
-            background: none;
-            border: none;
-            font-size: 2.2rem;
-            cursor: pointer;
-            transition: transform 0.1s;
+        .nav-icon-btn { background: none; border: none; font-size: 2.2rem; cursor: pointer; }
+
+        .footer-action-panel {
+            border-top: 4px dashed #ced6e0; 
+            padding-top: 8px; 
+            width: 100%; 
+            flex-shrink: 0; 
+            text-align: center;
         }
-        .nav-icon-btn:hover { transform: scale(1.15); }
+        .footer-action-panel .btn {
+            font-size: 1.6rem;
+            padding: 10px 35px;
+            margin: 0 10px;
+        }
 
         .mystery-overlay {
             position: absolute;
@@ -311,56 +303,78 @@
         }
         
         .gif-box-wrapper {
-            height: 50vh;
+            height: 45vh;
             width: 100%;
-            max-width: 350px;
+            max-width: 320px;
             cursor: pointer;
-            margin-bottom: 25px;
-            animation: floatAnim 1.8s ease-in-out infinite alternate;
-            transition: transform 0.2s;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .gif-box-wrapper:hover {
-            transform: scale(1.08);
+        .gif-box-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* RESULTS OVERLAY SCREEN ADJUSTMENTS: GIF LEFT SIDE, WORDS RIGHT SIDE */
+        .centered-outcome-card {
+            border-color: #ff9f43 !important;
+            justify-content: space-between !important; 
+            align-items: center !important;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 243, 224, 0.98)) !important;
+            padding: 20px !important;
         }
-        .gif-box-wrapper img {
+        .outcome-body-split {
+            display: flex;
+            flex-direction: row; /* Arranges panels left-to-right */
+            align-items: center;
+            justify-content: center;
             width: 100%;
+            flex: 1;
+            gap: 30px;
+            overflow: hidden;
+        }
+        .outcome-left-gif-panel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
             height: 100%;
+            flex: 1;
+            max-width: 45%;
+        }
+        .outcome-left-gif-panel img {
+            max-height: 42vh;
+            max-width: 100%;
             object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border: 4px solid #fff;
+        }
+        .outcome-right-text-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 1.2;
+            width: 100%;
         }
 
-        @keyframes floatAnim {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-15px); }
-        }
+        .settings-panel { background: #fff; border-radius: 25px; padding: 30px; width: 95%; height: 85vh; overflow-y: auto; color: #333; border: 5px solid #2f3542; }
+        .settings-panel h2, .settings-panel h3 { text-shadow: none; color: #2f3542; }
+        .q-row { border: 3px solid #ced6e0; padding: 20px; margin-bottom: 20px; border-radius: 16px; border-left: 10px solid var(--team-1-color); background: #f1f2f6; }
+        .correct-radio { transform: scale(1.6); cursor: pointer; margin-right: 8px; }
+        .opt-input-row { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 5px; }
+        input[type="text"], select { padding: 10px; font-size: 1.1rem; border-radius: 8px; border: 2px solid #ced6e0; font-weight: bold; }
         
-        .box-reward-reveal {
-            font-family: var(--cute-font);
-            font-size: 5.5rem;
-            color: #2ecc71;
-            text-shadow: 4px 4px 0 #000, 0 0 30px #2ecc71;
-            display: none;
-            animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        @keyframes correctGlow {
+            0% { transform: scale(1); box-shadow: 0 0 10px #2ecc71; }
+            50% { transform: scale(1.03); box-shadow: 0 0 25px #2ecc71, 0 5px 0 #1e7e43; }
+            100% { transform: scale(1); box-shadow: 0 0 10px #2ecc71; }
         }
-        @keyframes bounceIn {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* Confetti particle elements configuration layout setup */
-        .confetti-particle {
-            position: absolute;
-            z-index: 999;
-            top: -10px;
-            border-radius: 3px;
-            animation: fall linear forwards;
-        }
-        @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+        .glow-correct-ans {
+            animation: correctGlow 1.2s infinite ease-in-out !important;
+            background: #2ecc71 !important;
+            border-color: #fff !important;
         }
     </style>
 </head>
@@ -373,7 +387,9 @@
         <audio id="sndMinus" src="minus.wav"></audio>
         <audio id="sndSwap" src="swap points.wav"></audio>
         <audio id="sndLose" src="lose all points.wav"></audio>
+        <audio id="sndBomb" src="bomb.mp3"></audio>
         <audio id="sndReveal" src="reveal.wav"></audio>
+        <audio id="sndWinner" src="winner.mp3"></audio>
 
         <div id="globalScoreboard" class="scoreboard" style="display:none;">
             <div id="boxTeamA" class="team-box team-a">TEAM 1: <span id="scoreA">0</span></div>
@@ -392,14 +408,14 @@
         </div>
 
         <div id="screenRules" class="screen">
-            <div style="background:rgba(255,255,255,0.98); padding:40px; border-radius:30px; border: 6px solid #ff9f43; max-width:850px; color:#1e272e; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div style="background:rgba(255,255,255,0.98); padding:30px; border-radius:30px; border: 6px solid #ff9f43; max-width:850px; color:#1e272e; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
                 <h2 style="color:#2f3542; text-shadow: none; margin-top:0;">📜 How to Play!</h2>
-                <ul style="text-align:left; font-size:1.8rem; font-weight:bold; line-height: 1.6; padding-left: 25px;">
+                <ul style="text-align:left; font-size:1.6rem; font-weight:bold; line-height: 1.5; padding-left: 25px;">
                     <li>Work with your team to solve the letter box challenge!</li>
-                    <li>Choose <strong>KEEP IT</strong> to lock the surprise rewards for your side.</li>
-                    <li>Choose <strong>GIVE IT AWAY</strong> to throw the mystery package at your rivals!</li>
-                    <li>If your team gets an answer wrong, the <strong>Mystery Box</strong> appears and gives additional points to the other team!</li>
-                    <li>Keep scores up! Scores can never plunge lower than zero points!</li>
+                    <li>Select an option and press <strong>LOCK ANSWER</strong> to confirm.</li>
+                    <li>Choose <strong>KEEP IT</strong> to secure the hidden grid surprise rewards.</li>
+                    <li>Choose <strong>GIVE IT AWAY</strong> to pass the reward/penalty to your rivals!</li>
+                    <li>If your team is wrong, the teacher will tap ❌ to trigger the opponent's Mystery Box!</li>
                 </ul>
                 <button class="btn btn-green" onclick="startGame()">OPEN GAME GRID 🎮</button>
             </div>
@@ -408,7 +424,7 @@
         <div id="screenMain" class="screen">
             <div class="turn-container">
                 <span id="turnDot" class="turn-dot"></span>
-                <h2 id="turnIndicator" style="margin:0;">Team 1's Turn</h2>
+                <h2 id="turnIndicator" style="margin:0; font-size: 2rem;">Team 1's Turn</h2>
             </div>
             <div id="azGrid" class="grid-az"></div>
         </div>
@@ -421,47 +437,66 @@
                 </div>
 
                 <div id="qScrollArea" class="q-scroll-body">
-                    <div id="qText" class="question-text"></div>
-                    <img id="qImg" src="" style="max-height:22vh; object-fit:contain; border-radius:15px; border:4px solid #2f3542; display:none;">
+                    <div class="q-left-panel">
+                        <img id="qImg" src="">
+                    </div>
                     
-                    <div id="qOptions" class="options-container"></div>
-                    
-                    <div id="qIdArea" style="display:none; width:100%;">
-                        <button id="btnRevealId" class="btn btn-orange" onclick="revealIdAnswer()">REVEAL ANSWER</button>
-                        <p id="idAns" style="font-size:2.5rem; color:#2ecc71; font-weight:bold; text-shadow: 2px 2px 0px #000; margin: 10px 0 0 0; text-transform: none;"></p>
+                    <div class="q-right-panel">
+                        <div id="qText" class="question-text"></div>
+                        
+                        <div id="qOptions" class="options-container"></div>
+                        
+                        <div id="lockActionContainer" style="display:none; width:100%; margin-top:5px;">
+                            <button id="btnLockChoice" class="btn btn-purple" style="font-size: 1.6rem; padding: 10px 40px;" onclick="commitSelectedAnswer()">🔒 LOCK ANSWER</button>
+                        </div>
+                        
+                        <div id="qIdArea" style="display:none; width:100%;">
+                            <button id="btnRevealId" class="btn btn-orange" style="font-size: 1.6rem; padding: 8px 25px;" onclick="revealIdAnswer()">REVEAL ANSWER</button>
+                            <p id="idAns" style="font-size:2.8rem; color:#2ecc71; font-weight:bold; text-shadow: 2px 2px 0px #000; margin: 8px 0 0 0; text-transform: none;"></p>
+                        </div>
                     </div>
                 </div>
 
-                <div style="border-top:5px dashed #ced6e0; padding-top:10px; width:100%; flex-shrink:0;">
-                    <button class="btn btn-green" onclick="handleDecision('keep')">🤲 KEEP IT</button>
-                    <button class="btn btn-orange" onclick="handleDecision('give')">🎁 GIVE IT AWAY</button>
+                <div class="footer-action-panel">
+                    <button id="btnKeep" class="btn btn-green btn-disabled" onclick="handleDecision('keep')">🤲 KEEP IT</button>
+                    <button id="btnGive" class="btn btn-orange btn-disabled" onclick="handleDecision('give')">🎁 GIVE IT AWAY</button>
                 </div>
 
                 <div id="mysteryOverlay" class="mystery-overlay">
-                    <h2 id="mysteryTitle" style="font-size:3.5rem; margin-bottom:15px;">Mystery Box 🎁</h2>
-                    
+                    <h2 id="mysteryTitle" style="font-size:3rem; margin-bottom:10px;">Mystery Box 🎁</h2>
                     <div id="gifBoxWrapper" class="gif-box-wrapper" onclick="revealMysteryGift()">
-                        <img src="mystery box.gif" alt="Mystery Gift Box Graphic Target">
+                        <img src="mystery box.gif" alt="Mystery Box Graphic">
                     </div>
-                    
-                    <div id="mysteryRewardDisplay" class="box-reward-reveal"></div>
-                    <button id="btnMysteryClose" class="btn btn-blue" style="display:none; margin-top:20px;" onclick="closeMysterySequence()">CONTINUE ➡️</button>
+                    <div id="mysteryRewardDisplay" style="font-family: var(--cute-font); font-size: 4rem; color: #2ecc71; text-shadow: 3px 3px 0 #000; display: none;"></div>
+                    <button id="btnMysteryClose" class="btn btn-blue" style="display:none; margin-top:15px;" onclick="closeMysterySequence()">CONTINUE ➡️</button>
                 </div>
             </div>
         </div>
 
         <div id="screenOutcome" class="screen">
-            <div class="content-card" style="height:60vh; justify-content:center; border-color:#ff9f43;">
-                <h2 style="color:#2f3542; text-shadow:none; font-size:2.8rem; margin:0;">Mystery Box Content...</h2>
-                <div id="outcomeText" style="font-size:5rem; color:#ee5253; font-weight:bold; margin:30px 0; text-shadow: 3px 3px 0px #000;"></div>
-                <button class="btn btn-blue" onclick="nextTurn()">NEXT TURN ➡️</button>
+            <div class="content-card centered-outcome-card">
+                <div class="q-nav-header">
+                    <span style="font-size: 1.8rem; font-weight: bold; color: #2f3542; padding-left: 10px;">Mystery Box Content...</span>
+                    <span></span>
+                </div>
+                <div class="outcome-body-split">
+                    <div id="outcomeGifArea" class="outcome-left-gif-panel"></div>
+                    
+                    <div class="outcome-right-text-panel">
+                        <div id="outcomeShortText" style="font-family: var(--cute-font); font-size: 3.8rem; color: #2f3542; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;"></div>
+                        <div id="outcomePointsValue" style="font-size: 6.5rem; color: #ee5253; font-weight: bold; text-shadow: 4px 4px 0px #000; font-family: var(--arcade-font);"></div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; width:100%; text-align:center; flex-shrink:0;">
+                    <button class="btn btn-blue" style="font-size: 1.7rem; padding: 14px 60px; box-shadow: 0 6px 0 #227093;" onclick="nextTurn()">NEXT TURN ➡️</button>
+                </div>
             </div>
         </div>
 
         <div id="screenSettings" class="screen">
             <div class="settings-panel">
                 <h2>⚙️ Dashboard Configuration Terminal</h2>
-                
                 <div style="background:#f1f2f6; padding:20px; border-radius:15px; margin-bottom:20px; border:2px solid #ced6e0;">
                     <h3>📂 Cross-Device Sync Engine & Audio</h3>
                     <div style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
@@ -470,19 +505,11 @@
                         <input type="file" id="fileIn" style="display:none;" accept=".json" onchange="importData(event)">
                         <button id="btnMusicToggle" class="btn btn-small btn-orange" style="padding:8px 20px; font-size:1rem;" onclick="toggleMusic()">🎵 MUSIC: ON</button>
                     </div>
-
-                    <div class="volume-control-box">
-                        <div class="volume-row">
-                            <span>🎵 Music Volume:</span>
-                            <input type="range" id="volMusic" min="0" max="1" step="0.1" value="0.3" oninput="updateVolumes()">
-                        </div>
-                        <div class="volume-row">
-                            <span>🔊 Sound Effects Volume (Louder by Default):</span>
-                            <input type="range" id="volSFX" min="0" max="1" step="0.1" value="0.9" oninput="updateVolumes()">
-                        </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div>Music Volume: <input type="range" id="volMusic" min="0" max="1" step="0.1" value="0.3" oninput="updateVolumes()"></div>
+                        <div>SFX Volume: <input type="range" id="volSFX" min="0" max="1" step="0.1" value="0.9" oninput="updateVolumes()"></div>
                     </div>
                 </div>
-
                 <h3>Edit Content Loops (26 Slots)</h3>
                 <div id="setupList"></div>
                 <div style="text-align:center; padding:20px 0;">
@@ -492,20 +519,24 @@
             </div>
         </div>
 
-        <div id="screenPodium" class="screen">
-            <div class="content-card" style="height: 70vh; justify-content: center; border-color: #eccc68; background: rgba(255, 255, 255, 0.99);">
-                <div style="font-size: 6rem; margin-bottom: 10px; animation: floatAnim 1.5s ease-in-out infinite alternate;">👑</div>
-                <h2 style="color: #2f3542; text-shadow: none; font-size: 3.5rem; margin: 0;">FINAL TOURNAMENT RESULTS</h2>
+        <div id="screenPodium" class="screen" style="justify-content: center; align-items: center;">
+            <div class="content-card" style="height: 78vh; width: 95%; max-width: 900px; justify-content: center; align-items: center; border-color: #eccc68; margin: auto;">
+                <h2>FINAL TOURNAMENT RESULTS</h2>
                 
-                <div id="podiumWinnerText" style="font-size: 4.5rem; color: #ff9f43; font-weight: bold; margin: 20px 0; text-shadow: 3px 3px 0px #000; font-family: var(--cute-font);"></div>
-                
-                <div style="display: flex; gap: 40px; margin: 20px 0; background: #f1f2f6; padding: 20px 50px; border-radius: 25px; border: 4px solid #ced6e0;">
-                    <div style="font-size: 2.2rem; font-weight: bold; color: var(--team-1-color);">TEAM 1<br><span id="podiumScoreA" style="font-size: 3.5rem;">0</span></div>
-                    <div style="font-size: 3rem; font-weight: bold; color: #747d8c; align-self: center;">VS</div>
-                    <div style="font-size: 2.2rem; font-weight: bold; color: var(--team-2-color);">TEAM 2<br><span id="podiumScoreB" style="font-size: 3.5rem;">0</span></div>
+                <div style="height: 22vh; margin-bottom: 5px; display: flex; justify-content: center; align-items: center;">
+                    <img src="winner.gif" alt="Winner Celebration Animation Graphic" style="max-height: 100%; object-fit: contain; border-radius: 10px;">
                 </div>
-
-                <button class="btn btn-green btn-giant" style="margin-top: 25px;" onclick="startGame()">PLAY AGAIN 🎮</button>
+                
+                <div id="podiumWinnerText" style="font-size: 3.5rem; color: #ff9f43; font-weight: bold; margin: 5px 0; text-shadow: 3px 3px 0px #000; font-family: var(--cute-font);"></div>
+                
+                <div style="display: flex; gap: 40px; margin: 15px 0; background: #f1f2f6; padding: 15px 50px; border-radius: 25px; border: 4px solid #ced6e0; justify-content: center; align-items: center;">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--team-1-color); text-align: center;">TEAM 1<br><span id="podiumScoreA" style="font-size: 3rem;">0</span></div>
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--team-2-color); text-align: center;">TEAM 2<br><span id="podiumScoreB" style="font-size: 3rem;">0</span></div>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    <button class="btn btn-green btn-giant" style="margin: 0;" onclick="startGame()">PLAY AGAIN 🎮</button>
+                </div>
             </div>
         </div>
     </div>
@@ -536,7 +567,6 @@
                 clearInterval(confettiInterval);
                 document.querySelectorAll('.confetti-particle').forEach(p => p.remove());
             }
-
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             document.getElementById('globalScoreboard').style.display = (['screenMain', 'screenQuestion', 'screenOutcome'].includes(id)) ? 'flex' : 'none';
@@ -550,11 +580,11 @@
                 questions = [];
                 for (let i = 0; i < 26; i++) {
                     questions.push({ 
-                        text: `What is the target challenge query block #${i+1}?`, 
+                        text: `Classroom Target Quiz Challenge Matrix Slot #${i+1}?`, 
                         type: 'id', 
-                        options: ['Choice Option A', 'Choice Option B', 'Choice Option C', 'Choice Option D'], 
+                        options: ['Option A', 'Option B', 'Option C', 'Option D'], 
                         correct: 0, 
-                        answer: 'Answer Description Key', 
+                        answer: 'Correct Answer Display', 
                         image: '', 
                         outcome: outcomes[i % outcomes.length] 
                     });
@@ -568,14 +598,14 @@
             questions.forEach((q, i) => {
                 let optsHTML = [0,1,2,3].map(oi => `
                     <div class="opt-input-row">
-                        <input type="radio" name="correct_radio_${i}" class="correct-radio" ${q.correct == oi ? 'checked' : ''} value="${oi}" id="radio_${i}_${oi}">
-                        <input type="text" id="q${i}_o${oi}" value="${q.options[oi] || ''}" placeholder="Option Value ${oi+1}" style="flex:1;">
+                        <input type="radio" name="correct_radio_${i}" class="correct-radio" ${q.correct == oi ? 'checked' : ''} value="${oi}">
+                        <input type="text" id="q${i}_o${oi}" value="${q.options[oi] || ''}" style="flex:1;">
                     </div>
                 `).join('');
 
                 list.insertAdjacentHTML('beforeend', `
                     <div class="q-row">
-                        <strong>Matrix Letter Unit Slot Assignment #${i+1}</strong>
+                        <strong>Matrix Letter Unit Slot Assigned #${i+1}</strong>
                         <input type="text" id="qText_${i}" value="${q.text}" style="width:100%; margin: 8px 0;">
                         <div style="display:flex; gap:15px; margin-bottom:8px;">
                             <select id="qType_${i}" onchange="toggleType(${i}, this.value)">
@@ -584,14 +614,13 @@
                             </select>
                             <select id="qOut_${i}">${outcomes.map(o => `<option value="${o}" ${q.outcome==o?'selected':''}>${o}</option>`).join('')}</select>
                         </div>
-                        <div id="paste_${i}" style="border:3px dashed #747d8c; padding:15px; font-weight:bold; text-align:center; background:#fff; margin:8px 0; color:#57606f;" onpaste="handlePaste(event, ${i})">
-                            ${q.image ? `<img src="${q.image}" style="height:65px; border-radius:5px;">` : 'Click Content Block & Tap Ctrl+V to Append Picture Asset'}
+                        <div id="paste_${i}" style="border:3px dashed #747d8c; padding:15px; text-align:center; background:#fff; margin:8px 0;" onpaste="handlePaste(event, ${i})">
+                            ${q.image ? `<img src="${q.image}" style="height:65px;">` : 'Click here and Paste (Ctrl+V) Image Asset'}
                         </div>
-                        <div id="mc_${i}" style="display:${q.type=='multiple'?'block':'none'}; background:#fff; padding:10px; border-radius:8px; border:1px solid #ced6e0;">
-                            <span style="font-size:0.9rem; font-weight:bold; color:#747d8c;">Select the dot marking the valid correct choice option answer:</span>
+                        <div id="mc_${i}" style="display:${q.type=='multiple'?'block':'none'};">
                             ${optsHTML}
                         </div>
-                        <input type="text" id="qAns_${i}" value="${q.answer}" style="display:${q.type=='id'?'block':'none'}; width:100%;" placeholder="Valid Answer Details Key">
+                        <input type="text" id="qAns_${i}" value="${q.answer}" style="display:${q.type=='id'?'block':'none'}; width:100%;">
                     </div>
                 `);
             });
@@ -609,10 +638,7 @@
                     const reader = new FileReader();
                     reader.onload = (event) => {
                         questions[i].image = event.target.result;
-                        const pasteBox = document.getElementById(`paste_${i}`);
-                        if (pasteBox) {
-                            pasteBox.innerHTML = `<img src="${event.target.result}" style="height:65px; border-radius:5px;">`;
-                        }
+                        document.getElementById(`paste_${i}`).innerHTML = `<img src="${event.target.result}" style="height:65px;">`;
                     };
                     reader.readAsDataURL(item.getAsFile());
                 }
@@ -621,30 +647,17 @@
 
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
-            const btn = document.getElementById('btnMusicToggle');
-            if (isMusicPlaying) {
-                music.pause();
-                btn.innerText = "🎵 MUSIC: OFF";
-                isMusicPlaying = false;
-            } else {
-                music.play().catch(()=>{});
-                btn.innerText = "🎵 MUSIC: ON";
-                isMusicPlaying = true;
-            }
+            if (isMusicPlaying) { music.pause(); isMusicPlaying = false; }
+            else { music.play().catch(()=>{}); isMusicPlaying = true; }
         }
 
         function updateVolumes() {
             const musicVol = document.getElementById('volMusic').value;
             const sfxVol = document.getElementById('volSFX').value;
-            
             document.getElementById('bgMusic').volume = musicVol;
-            
-            document.getElementById('sndClick').volume = sfxVol;
-            document.getElementById('sndAdd').volume = sfxVol;
-            document.getElementById('sndMinus').volume = sfxVol;
-            document.getElementById('sndSwap').volume = sfxVol;
-            document.getElementById('sndLose').volume = sfxVol;
-            document.getElementById('sndReveal').volume = sfxVol;
+            ['sndClick', 'sndAdd', 'sndMinus', 'sndSwap', 'sndLose', 'sndBomb', 'sndReveal', 'sndWinner'].forEach(id => {
+                document.getElementById(id).volume = sfxVol;
+            });
         }
 
         function saveData() {
@@ -654,13 +667,9 @@
                 q.outcome = document.getElementById(`qOut_${i}`).value;
                 q.answer = document.getElementById(`qAns_${i}`).value;
                 q.options = [0,1,2,3].map(oi => document.getElementById(`q${i}_o${oi}`).value);
-                
                 let radios = document.getElementsByName(`correct_radio_${i}`);
                 for(let r = 0; r < radios.length; r++) {
-                    if(radios[r].checked) {
-                        q.correct = parseInt(radios[r].value);
-                        break;
-                    }
+                    if(radios[r].checked) { q.correct = parseInt(radios[r].value); break; }
                 }
             });
             localStorage.setItem('give_keep_v3', JSON.stringify(questions));
@@ -670,12 +679,8 @@
 
         function exportData() {
             const str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(questions));
-            const dl = document.createElement('a');
-            dl.setAttribute("href", str);
-            dl.setAttribute("download", "give_or_keep_game_backup.json");
-            document.body.appendChild(dl);
-            dl.click();
-            dl.remove();
+            const dl = document.createElement('a'); dl.setAttribute("href", str); dl.setAttribute("download", "give_or_keep_game_backup.json");
+            document.body.appendChild(dl); dl.click(); dl.remove();
         }
 
         function importData(e) {
@@ -684,12 +689,10 @@
                 try {
                     const parsed = JSON.parse(event.target.result);
                     if (Array.isArray(parsed) && parsed.length === 26) {
-                        questions = parsed;
-                        localStorage.setItem('give_keep_v3', JSON.stringify(questions));
-                        buildSetup();
-                        alert("External Database Pack Connected Successfully!");
-                    } else { alert("Data structure package mismatch."); }
-                } catch(err) { alert("Failed to parse target package framework cleanly."); }
+                        questions = parsed; localStorage.setItem('give_keep_v3', JSON.stringify(questions));
+                        buildSetup(); alert("Database Pack Connected Successfully!");
+                    }
+                } catch(err) { alert("Failed to parse file."); }
             };
             fr.readAsText(e.target.files[0]);
         }
@@ -707,49 +710,41 @@
                 let div = document.createElement('div');
                 div.className = `letter-box ${used[qi] ? 'disabled' : ''}`;
                 div.innerText = l;
-                if (!used[qi]) {
-                    div.onclick = () => launch(l, qi);
-                }
+                if (!used[qi]) div.onclick = () => launch(qi);
                 grid.appendChild(div);
             });
         }
 
-        function launch(l, qi) {
+        function launch(qi) {
             playSound('sndClick');
             activeIdx = qi;
             let q = questions[qi];
             isAnswerLocked = false; 
             
+            document.getElementById('btnKeep').className = "btn btn-green btn-disabled";
+            document.getElementById('btnGive').className = "btn btn-orange btn-disabled";
+            document.getElementById('lockActionContainer').style.display = 'none';
+
             document.getElementById('mysteryOverlay').style.display = 'none';
             document.getElementById('gifBoxWrapper').style.display = 'flex';
+            document.getElementById('mysteryTitle').style.display = 'block';
             document.getElementById('mysteryRewardDisplay').style.display = 'none';
             document.getElementById('btnMysteryClose').style.display = 'none';
-            document.getElementById('mysteryTitle').style.display = 'block';
 
-            let shell = document.getElementById('qCardShell');
-            shell.style.borderColor = (currentTeam === 'A') ? 'var(--team-1-color)' : 'var(--team-2-color)';
-
+            document.getElementById('qCardShell').style.borderColor = (currentTeam === 'A') ? 'var(--team-1-color)' : 'var(--team-2-color)';
             document.getElementById('qText').innerText = q.text;
             
             let scrollArea = document.getElementById('qScrollArea');
             let img = document.getElementById('qImg');
-            if(q.image) { 
-                img.src = q.image; 
-                img.style.display = 'block'; 
-                scrollArea.classList.remove('no-image-layout');
-            } else { 
-                img.style.display = 'none'; 
-                scrollArea.classList.add('no-image-layout');
-            }
+            if(q.image) { img.src = q.image; scrollArea.classList.remove('no-image-layout'); }
+            else { scrollArea.classList.add('no-image-layout'); }
             
             let opts = document.getElementById('qOptions');
             let idArea = document.getElementById('qIdArea');
             opts.innerHTML = '';
-            document.getElementById('idAns').innerText = '';
 
             if (q.type == 'multiple') {
-                idArea.style.display = 'block'; 
-                document.getElementById('btnRevealId').innerText = "LOCK ANSWER"; 
+                idArea.style.display = 'none'; 
                 opts.style.display = 'grid';
                 
                 q.options.forEach((o, oi) => {
@@ -761,15 +756,13 @@
                         b.onclick = () => { 
                             if (isAnswerLocked) return; 
                             playSound('sndClick');
-                            
                             Array.from(opts.children).forEach(child => {
-                                child.style.background = '';
-                                child.style.boxShadow = '';
+                                child.style.background = ''; child.style.boxShadow = ''; child.classList.remove('glow-correct-ans');
                             });
-                            
                             b.style.background = '#ff9f43';
                             b.style.boxShadow = '0 5px 0 #cd6133';
                             b.dataset.selectedIdx = oi; 
+                            document.getElementById('lockActionContainer').style.display = 'block';
                         };
                         opts.appendChild(b);
                     }
@@ -777,52 +770,58 @@
             } else {
                 opts.style.display = 'none';
                 idArea.style.display = 'block';
-                document.getElementById('btnRevealId').innerText = "REVEAL ANSWER";
                 document.getElementById('idAns').innerText = q.answer;
                 document.getElementById('idAns').style.display = 'none';
+                
+                document.getElementById('btnKeep').className = "btn btn-green";
+                document.getElementById('btnGive').className = "btn btn-orange";
             }
             changeScreen('screenQuestion');
         }
 
+        function commitSelectedAnswer() {
+            if (isAnswerLocked) return;
+            let q = questions[activeIdx];
+            let selectedBtn = document.querySelector('#qOptions button[data-selected-idx]');
+            if (!selectedBtn) return;
+            
+            isAnswerLocked = true;
+            document.getElementById('lockActionContainer').style.display = 'none';
+            
+            let selectedIdx = parseInt(selectedBtn.dataset.selectedIdx);
+            
+            let correctBtn = document.querySelector(`#qOptions button:nth-child(${q.correct + 1})`);
+            if (correctBtn) {
+                correctBtn.classList.add('glow-correct-ans');
+            }
+            
+            if (selectedIdx !== q.correct) {
+                selectedBtn.style.background = '#ee5253';
+                selectedBtn.style.boxShadow = '0 5px 0 #b33939';
+                playSound('sndMinus');
+            } else {
+                playSound('sndAdd');
+            }
+
+            document.getElementById('btnKeep').className = "btn btn-green";
+            document.getElementById('btnGive').className = "btn btn-orange";
+        }
+
         function revealIdAnswer() { 
             playSound('sndClick');
-            let q = questions[activeIdx];
-            
-            if (q.type == 'multiple') {
-                if (isAnswerLocked) return; 
-                isAnswerLocked = true; 
-                
-                let opts = document.getElementById('qOptions');
-                let selectedBtn = Array.from(opts.children).find(btn => btn.dataset.selectedIdx !== undefined);
-                
-                Array.from(opts.children).forEach((btn, oi) => {
-                    if (oi == q.correct) {
-                        btn.style.background = '#2ecc71';
-                        btn.style.boxShadow = '0 5px 0 #1e7e43';
-                    } else if (btn === selectedBtn) {
-                        btn.style.background = '#ee5253';
-                        btn.style.boxShadow = '0 5px 0 #b33939';
-                    }
-                });
-            } else {
-                document.getElementById('idAns').style.display = 'block'; 
-            }
+            document.getElementById('idAns').style.display = 'block'; 
         }
 
-        function goToGridScreen() {
-            playSound('sndClick');
-            changeScreen('screenMain');
-        }
+        function goToGridScreen() { playSound('sndClick'); changeScreen('screenMain'); }
 
         function triggerWrongAnswerSequence() {
-            pendingWrongPoints = Math.floor(Math.random() * 46) + 5;
+            pendingWrongPoints = Math.floor(Math.random() * 16) + 5; 
             document.getElementById('mysteryOverlay').style.display = 'flex';
             playSound('sndReveal');
         }
 
         function revealMysteryGift() {
             playSound('sndReveal');
-            
             let opponentTeam = (currentTeam === 'A') ? 'B' : 'A';
             scores[opponentTeam] += pendingWrongPoints;
             
@@ -832,42 +831,69 @@
             let rewardDisplay = document.getElementById('mysteryRewardDisplay');
             rewardDisplay.innerText = `+${pendingWrongPoints} Points to Team ${opponentTeam === 'A' ? '1' : '2'}!`;
             rewardDisplay.style.display = 'block';
-            
             document.getElementById('btnMysteryClose').style.display = 'inline-block';
             updateScores();
         }
 
-        function closeMysterySequence() {
-            used[activeIdx] = true;
-            nextTurn();
-        }
+        function closeMysterySequence() { used[activeIdx] = true; nextTurn(); }
 
         function handleDecision(choice) {
+            let btn = choice === 'keep' ? document.getElementById('btnKeep') : document.getElementById('btnGive');
+            if (btn.classList.contains('btn-disabled')) return;
+
             let q = questions[activeIdx];
             used[activeIdx] = true; 
             
             let target = (choice == 'keep') ? currentTeam : (currentTeam == 'A' ? 'B' : 'A');
             let val = q.outcome;
             let chosenSound = 'sndAdd';
+            
+            let gifArea = document.getElementById('outcomeGifArea');
+            let txtLabel = document.getElementById('outcomeShortText');
+            let ptsLabel = document.getElementById('outcomePointsValue');
+            
+            gifArea.innerHTML = ''; 
+            ptsLabel.innerText = '';
 
             if (val.includes('+')) {
                 scores[target] += parseInt(val.replace('+', ''));
-                chosenSound = 'sndAdd';
+                txtLabel.innerText = "plus points";
+                ptsLabel.innerText = val;
+                gifArea.innerHTML = `<img src="plus.gif">`;
+                playSound(chosenSound);
             } else if (val.includes('-')) {
-                scores[target] = Math.max(0, scores[target] - parseInt(val.replace('-', '')));
+                scores[target] -= parseInt(val.replace('-', '')); 
                 chosenSound = 'sndMinus';
+                txtLabel.innerText = "minus points";
+                ptsLabel.innerText = val;
+                gifArea.innerHTML = `<img src="minus.gif">`;
+                playSound(chosenSound);
             } else if (val == 'swap score') {
-                let temp = scores.A; scores.A = scores.B; scores.B = temp;
+                let temp = scores.A; scores.A = scores.B; scores.B = temp; 
                 chosenSound = 'sndSwap';
+                txtLabel.innerText = "swap points";
+                gifArea.innerHTML = `<img src="swap.gif">`;
+                playSound(chosenSound);
             } else if (val == 'lose all points') {
-                scores[target] = 0; // FIX: Current score explicitly turns to 0 and does NOT swap with the other team.
-                chosenSound = 'sndLose';
+                scores[target] = 0; 
+                txtLabel.innerText = "lose all points";
+                gifArea.innerHTML = `<img src="lose points.gif"><img src="bomb.gif">`;
+                
+                document.getElementById('bgMusic').volume = 0.05;
+                
+                let loseSFX = document.getElementById('sndLose');
+                let bombSFX = document.getElementById('sndBomb');
+                
+                loseSFX.volume = 1.0;
+                bombSFX.volume = 1.0;
+                
+                loseSFX.currentTime = 0;
+                bombSFX.currentTime = 0;
+                
+                loseSFX.play().catch(()=>{});
+                bombSFX.play().catch(()=>{});
             }
 
-            playSound(chosenSound);
-            let displayTargetName = (target === currentTeam) ? "your team" : "the other team";
-            document.getElementById('outcomeText').innerText = choice == 'keep' ? `You kept: ${val} for ${displayTargetName}!` : `You gave away: ${val} to ${displayTargetName}!`;
-            
             updateScores();
             changeScreen('screenOutcome');
         }
@@ -875,122 +901,69 @@
         function updateScores() {
             document.getElementById('scoreA').innerText = scores.A;
             document.getElementById('scoreB').innerText = scores.B;
-            
-            let dot = document.getElementById('turnDot');
-            let ind = document.getElementById('turnIndicator');
-            
-            dot.style.background = (currentTeam == 'A') ? 'var(--team-1-color)' : 'var(--team-2-color)';
-            ind.innerText = (currentTeam == 'A') ? "Team 1's Turn" : "Team 2's Turn";
-            
+            document.getElementById('turnDot').style.background = (currentTeam == 'A') ? 'var(--team-1-color)' : 'var(--team-2-color)';
+            document.getElementById('turnIndicator').innerText = (currentTeam == 'A') ? "Team 1's Turn" : "Team 2's Turn";
             document.getElementById('boxTeamA').className = `team-box team-a ${currentTeam=='A'?'active-team-turn-indicator':''}`;
             document.getElementById('boxTeamB').className = `team-box team-b ${currentTeam=='B'?'active-team-turn-indicator':''}`;
         }
 
         function nextTurn() {
-            playSound('sndClick');
-            currentTeam = (currentTeam == 'A') ? 'B' : 'A';
-            updateScores();
-            buildGrid(); 
-            
-            if(used.every(v => v === true)) {
-                showFinalPodium();
-            } else {
-                changeScreen('screenMain');
+            if (isMusicPlaying) {
+                document.getElementById('bgMusic').volume = document.getElementById('volMusic').value;
             }
+            
+            currentTeam = (currentTeam == 'A') ? 'B' : 'A';
+            updateScores(); buildGrid(); 
+            if(used.every(v => v === true)) showFinalPodium();
+            else changeScreen('screenMain');
         }
 
         function showFinalPodium() {
+            document.getElementById('bgMusic').pause();
+            
+            let winSFX = document.getElementById('sndWinner');
+            winSFX.volume = 1.0;
+            winSFX.currentTime = 0;
+            winSFX.play().catch(()=>{});
+
             document.getElementById('podiumScoreA').innerText = scores.A;
             document.getElementById('podiumScoreB').innerText = scores.B;
-            
-            let winnerLabel = document.getElementById('podiumWinnerText');
-            if (scores.A > scores.B) {
-                winnerLabel.innerText = "🏆 TEAM 1 WINS!";
-                winnerLabel.style.color = "var(--team-1-color)";
-            } else if (scores.B > scores.A) {
-                winnerLabel.innerText = "🏆 TEAM 2 WINS!";
-                winnerLabel.style.color = "var(--team-2-color)";
-            } else {
-                winnerLabel.innerText = "🤝 IT'S A TIE SCORE!";
-                winnerLabel.style.color = "#747d8c";
-            }
-            
+            let label = document.getElementById('podiumWinnerText');
+            if (scores.A > scores.B) { label.innerText = "🏆 TEAM 1 WINS!"; label.style.color = "var(--team-1-color)"; }
+            else if (scores.B > scores.A) { label.innerText = "🏆 TEAM 2 WINS!"; label.style.color = "var(--team-2-color)"; }
+            else { label.innerText = "🤝 IT'S A TIE SCORE!"; label.style.color = "#747d8c"; }
             changeScreen('screenPodium');
-            playVictoryFanfare();
             triggerConfettiExplosion();
         }
 
-        function playVictoryFanfare() {
-            try {
-                let ctx = new (window.AudioContext || window.webkitAudioContext)();
-                let now = ctx.currentTime;
-                let vol = document.getElementById('volSFX').value * 0.5;
-                
-                let notes = [261.63, 329.63, 392.00, 523.25, 392.00, 523.25, 659.25];
-                let rhythms = [0.15, 0.15, 0.15, 0.3, 0.15, 0.15, 0.6];
-                let accumTime = now;
-
-                notes.forEach((freq, idx) => {
-                    let osc = ctx.createOscillator();
-                    let gain = ctx.createGain();
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(freq, accumTime);
-                    
-                    gain.gain.setValueAtTime(vol, accumTime);
-                    gain.gain.exponentialRampToValueAtTime(0.01, accumTime + rhythms[idx] - 0.02);
-                    
-                    osc.connect(gain);
-                    gain.connect(ctx.destination);
-                    osc.start(accumTime);
-                    osc.stop(accumTime + rhythms[idx]);
-                    accumTime += rhythms[idx];
-                });
-            } catch(e) {}
-        }
-
         function triggerConfettiExplosion() {
-            const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#ff6b81', '#70a1ff'];
+            const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68'];
             const container = document.getElementById('gameMainWrapper');
-            
             confettiInterval = setInterval(() => {
-                for (let i = 0; i < 6; i++) {
-                    let particle = document.createElement('div');
-                    particle.className = 'confetti-particle';
-                    
+                for (let i = 0; i < 5; i++) {
+                    let p = document.createElement('div'); p.className = 'confetti-particle';
                     let size = Math.random() * 8 + 6;
-                    let left = Math.random() * 100;
-                    let duration = Math.random() * 2.5 + 2;
-                    let color = colors[Math.floor(Math.random() * colors.length)];
-                    
-                    particle.style.width = size + 'px';
-                    particle.style.height = size + 'px';
-                    particle.style.left = left + '%';
-                    particle.style.backgroundColor = color;
-                    particle.style.animationDuration = duration + 's';
-                    
-                    container.appendChild(particle);
-                    
-                    setTimeout(() => { particle.remove(); }, duration * 1000);
+                    p.style.width = size + 'px'; p.style.height = size + 'px';
+                    p.style.left = Math.random() * 100 + '%'; p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    p.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    container.appendChild(p);
+                    setTimeout(() => { p.remove(); }, 3000);
                 }
-            }, 180);
+            }, 200);
         }
 
         function startGame() { 
-            scores = {A:0, B:0}; 
-            used.fill(false); 
-            currentTeam = 'A'; 
-            updateScores(); 
-            buildGrid(); 
-            changeScreen('screenMain'); 
+            scores = {A:0, B:0}; used.fill(false); currentTeam = 'A'; 
+            updateScores(); buildGrid(); changeScreen('screenMain'); 
             if (isMusicPlaying) {
+                document.getElementById('bgMusic').volume = document.getElementById('volMusic').value;
                 document.getElementById('bgMusic').play().catch(()=>{}); 
             }
         }
         
         function playSound(id) {
             let audio = document.getElementById(id);
-            audio.currentTime = 0;
-            audio.play().catch(()=>{});
+            audio.currentTime = 0; audio.play().catch(()=>{});
         }
     </script>
 </body>
