@@ -314,7 +314,6 @@
         }
         .gif-box-wrapper img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* RESULTS OVERLAY SCREEN ADJUSTMENTS: GIF LEFT SIDE, WORDS RIGHT SIDE */
         .centered-outcome-card {
             border-color: #ff9f43 !important;
             justify-content: space-between !important; 
@@ -324,7 +323,7 @@
         }
         .outcome-body-split {
             display: flex;
-            flex-direction: row; /* Arranges panels left-to-right */
+            flex-direction: row; 
             align-items: center;
             justify-content: center;
             width: 100%;
@@ -357,6 +356,46 @@
             text-align: center;
             flex: 1.2;
             width: 100%;
+        }
+
+        /* EXPLANATION RULES BOARD BOX SYSTEM */
+        .rules-grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            width: 100%;
+            margin: 15px 0;
+        }
+        .rule-info-card {
+            background: #f8f9fa;
+            border: 3px solid #ced6e0;
+            border-radius: 18px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .rule-info-card img {
+            height: 70px;
+            width: 70px;
+            object-fit: contain;
+            margin-bottom: 8px;
+            border-radius: 10px;
+        }
+        .rule-info-card h4 {
+            margin: 0 0 4px 0;
+            font-size: 1.2rem;
+            font-family: var(--cute-font);
+            text-transform: uppercase;
+        }
+        .rule-info-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            font-weight: bold;
+            line-height: 1.3;
+            color: #57606f;
         }
 
         .settings-panel { background: #fff; border-radius: 25px; padding: 30px; width: 95%; height: 85vh; overflow-y: auto; color: #333; border: 5px solid #2f3542; }
@@ -408,16 +447,43 @@
         </div>
 
         <div id="screenRules" class="screen">
-            <div style="background:rgba(255,255,255,0.98); padding:30px; border-radius:30px; border: 6px solid #ff9f43; max-width:850px; color:#1e272e; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
-                <h2 style="color:#2f3542; text-shadow: none; margin-top:0;">📜 How to Play!</h2>
-                <ul style="text-align:left; font-size:1.6rem; font-weight:bold; line-height: 1.5; padding-left: 25px;">
-                    <li>Work with your team to solve the letter box challenge!</li>
-                    <li>Select an option and press <strong>LOCK ANSWER</strong> to confirm.</li>
-                    <li>Choose <strong>KEEP IT</strong> to secure the hidden grid surprise rewards.</li>
-                    <li>Choose <strong>GIVE IT AWAY</strong> to pass the reward/penalty to your rivals!</li>
-                    <li>If your team is wrong, the teacher will tap ❌ to trigger the opponent's Mystery Box!</li>
-                </ul>
-                <button class="btn btn-green" onclick="startGame()">OPEN GAME GRID 🎮</button>
+            <div style="background:rgba(255,255,255,0.98); padding:25px; border-radius:30px; border: 6px solid #ff9f43; width:95%; max-width:1100px; color:#1e272e; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                <h2 style="color:#2f3542; text-shadow: none; margin-top:0; font-size:2.5rem;">📜 Game Instructions & Rules</h2>
+                <p style="font-size:1.3rem; font-weight:bold; margin:0 0 10px 0; color:#2f3542;">Answer correctly to find a hidden item! Choose to <span style="color:#2ecc71;">KEEP IT</span> or <span style="color:#ff9f43;">GIVE IT AWAY</span>!</p>
+                
+                <div class="rules-grid-container">
+                    <div class="rule-info-card" style="border-top: 6px solid #2ecc71;">
+                        <img src="plus.gif" alt="Plus Graphic">
+                        <h4 style="color: #2ecc71;">PLUS POINTS</h4>
+                        <p>Adds extra score bonus rewards to your team score total!</p>
+                    </div>
+
+                    <div class="rule-info-card" style="border-top: 6px solid #ee5253;">
+                        <img src="minus.gif" alt="Minus Graphic">
+                        <h4 style="color: #ee5253;">MINUS POINTS</h4>
+                        <p>Subtracts points away from the chosen team's scoreboard!</p>
+                    </div>
+
+                    <div class="rule-info-card" style="border-top: 6px solid #54a0ff;">
+                        <img src="swap.gif" alt="Swap Graphic">
+                        <h4 style="color: #54a0ff;">SWAP SCORE</h4>
+                        <p>Instantly switches and swaps your score with the other team!</p>
+                    </div>
+
+                    <div class="rule-info-card" style="border-top: 6px solid #2f3542;">
+                        <img src="lose points.gif" alt="Lose All Points Graphic">
+                        <h4 style="color: #2f3542;">LOSE ALL</h4>
+                        <p>Wipes out the entire scoreboard back down to zero points!</p>
+                    </div>
+
+                    <div class="rule-info-card" style="border-top: 6px solid #ff9f43;">
+                        <img src="mystery box.gif" alt="Mystery Box Graphic">
+                        <h4 style="color: #ff9f43;">MYSTERY BOX</h4>
+                        <p>Wrong answer? Teacher taps ❌ to give your rivals free points!</p>
+                    </div>
+                </div>
+
+                <button class="btn btn-green" style="font-size:1.5rem; padding:12px 45px;" onclick="startGame()">OPEN GAME GRID 🎮</button>
             </div>
         </div>
 
