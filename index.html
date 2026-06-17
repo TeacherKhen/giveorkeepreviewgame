@@ -94,6 +94,7 @@
         .btn-orange { background: linear-gradient(135deg, #ff9f43, #ee5253); box-shadow: 0 6px 0 #cd6133; }
         .btn-green { background: linear-gradient(135deg, #2ecc71, #27ae60); box-shadow: 0 6px 0 #1e7e43; }
         .btn-purple { background: linear-gradient(135deg, #a55eea, #8854d0); box-shadow: 0 6px 0 #6d3ca3; }
+        .btn-red { background: linear-gradient(135deg, #ff4757, #ff6b6b); box-shadow: 0 6px 0 #cf3a46; }
         
         .btn-disabled {
             background: #a4b0be !important;
@@ -358,7 +359,6 @@
             width: 100%;
         }
 
-        /* EXPLANATION RULES BOARD BOX SYSTEM */
         .rules-grid-container {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -435,6 +435,7 @@
             <div id="boxTeamB" class="team-box team-b">TEAM 2: <span id="scoreB">0</span></div>
         </div>
 
+        <!-- SCREEN 1: TITLE SCREEN -->
         <div id="screenTitle" class="screen active">
             <div class="title-image-box">
                 <img src="titlepage.gif" alt="Game Logo Graphic">
@@ -446,36 +447,42 @@
             </div>
         </div>
 
+        <!-- SCREEN 2: RULES MODULE -->
         <div id="screenRules" class="screen">
             <div style="background:rgba(255,255,255,0.98); padding:25px; border-radius:30px; border: 6px solid #ff9f43; width:95%; max-width:1100px; color:#1e272e; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
                 <h2 style="color:#2f3542; text-shadow: none; margin-top:0; font-size:2.5rem;">📜 Game Instructions & Rules</h2>
                 <p style="font-size:1.3rem; font-weight:bold; margin:0 0 10px 0; color:#2f3542;">Answer correctly to find a hidden item! Choose to <span style="color:#2ecc71;">KEEP IT</span> or <span style="color:#ff9f43;">GIVE IT AWAY</span>!</p>
                 
                 <div class="rules-grid-container">
+                    <!-- PLUS BOX -->
                     <div class="rule-info-card" style="border-top: 6px solid #2ecc71;">
                         <img src="plus.gif" alt="Plus Graphic">
                         <h4 style="color: #2ecc71;">PLUS POINTS</h4>
                         <p>Adds extra score bonus rewards to your team score total!</p>
                     </div>
 
+                    <!-- MINUS BOX -->
                     <div class="rule-info-card" style="border-top: 6px solid #ee5253;">
                         <img src="minus.gif" alt="Minus Graphic">
                         <h4 style="color: #ee5253;">MINUS POINTS</h4>
                         <p>Subtracts points away from the chosen team's scoreboard!</p>
                     </div>
 
+                    <!-- SWAP BOX -->
                     <div class="rule-info-card" style="border-top: 6px solid #54a0ff;">
                         <img src="swap.gif" alt="Swap Graphic">
                         <h4 style="color: #54a0ff;">SWAP SCORE</h4>
                         <p>Instantly switches and swaps your score with the other team!</p>
                     </div>
 
+                    <!-- LOSE BOX -->
                     <div class="rule-info-card" style="border-top: 6px solid #2f3542;">
                         <img src="lose points.gif" alt="Lose All Points Graphic">
                         <h4 style="color: #2f3542;">LOSE ALL</h4>
                         <p>Wipes out the entire scoreboard back down to zero points!</p>
                     </div>
 
+                    <!-- MYSTERY BOX -->
                     <div class="rule-info-card" style="border-top: 6px solid #ff9f43;">
                         <img src="mystery box.gif" alt="Mystery Box Graphic">
                         <h4 style="color: #ff9f43;">MYSTERY BOX</h4>
@@ -487,6 +494,7 @@
             </div>
         </div>
 
+        <!-- SCREEN 3: INTERACTIVE BOARD GRID -->
         <div id="screenMain" class="screen">
             <div class="turn-container">
                 <span id="turnDot" class="turn-dot"></span>
@@ -495,6 +503,7 @@
             <div id="azGrid" class="grid-az"></div>
         </div>
 
+        <!-- SCREEN 4: QUESTION RUNTIME HUB -->
         <div id="screenQuestion" class="screen">
             <div class="content-card" id="qCardShell">
                 <div class="q-nav-header">
@@ -510,12 +519,15 @@
                     <div class="q-right-panel">
                         <div id="qText" class="question-text"></div>
                         
+                        <!-- MULTIPLE CHOICE ENGINE -->
                         <div id="qOptions" class="options-container"></div>
                         
+                        <!-- LOCK BUTTON INTERMEDIARY STAGE -->
                         <div id="lockActionContainer" style="display:none; width:100%; margin-top:5px;">
                             <button id="btnLockChoice" class="btn btn-purple" style="font-size: 1.6rem; padding: 10px 40px;" onclick="commitSelectedAnswer()">🔒 LOCK ANSWER</button>
                         </div>
                         
+                        <!-- IDENTIFICATION MODULE -->
                         <div id="qIdArea" style="display:none; width:100%;">
                             <button id="btnRevealId" class="btn btn-orange" style="font-size: 1.6rem; padding: 8px 25px;" onclick="revealIdAnswer()">REVEAL ANSWER</button>
                             <p id="idAns" style="font-size:2.8rem; color:#2ecc71; font-weight:bold; text-shadow: 2px 2px 0px #000; margin: 8px 0 0 0; text-transform: none;"></p>
@@ -523,11 +535,13 @@
                     </div>
                 </div>
 
+                <!-- SELECTION FOOTER ACTIONS -->
                 <div class="footer-action-panel">
                     <button id="btnKeep" class="btn btn-green btn-disabled" onclick="handleDecision('keep')">🤲 KEEP IT</button>
                     <button id="btnGive" class="btn btn-orange btn-disabled" onclick="handleDecision('give')">🎁 GIVE IT AWAY</button>
                 </div>
 
+                <!-- Mystery Box Overlay Structure -->
                 <div id="mysteryOverlay" class="mystery-overlay">
                     <h2 id="mysteryTitle" style="font-size:3rem; margin-bottom:10px;">Mystery Box 🎁</h2>
                     <div id="gifBoxWrapper" class="gif-box-wrapper" onclick="revealMysteryGift()">
@@ -539,6 +553,7 @@
             </div>
         </div>
 
+        <!-- SCREEN 5: REVEAL MODAL VIEW -->
         <div id="screenOutcome" class="screen">
             <div class="content-card centered-outcome-card">
                 <div class="q-nav-header">
@@ -546,8 +561,10 @@
                     <span></span>
                 </div>
                 <div class="outcome-body-split">
+                    <!-- GIF VIEWPORT PANEL (LEFT SIDE) -->
                     <div id="outcomeGifArea" class="outcome-left-gif-panel"></div>
                     
+                    <!-- REVEAL GRAPHIC DESCRIPTION TEXT METRICS (RIGHT SIDE) -->
                     <div class="outcome-right-text-panel">
                         <div id="outcomeShortText" style="font-family: var(--cute-font); font-size: 3.8rem; color: #2f3542; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;"></div>
                         <div id="outcomePointsValue" style="font-size: 6.5rem; color: #ee5253; font-weight: bold; text-shadow: 4px 4px 0px #000; font-family: var(--arcade-font);"></div>
@@ -560,6 +577,7 @@
             </div>
         </div>
 
+        <!-- SCREEN 6: SETUP SETTINGS PANEL -->
         <div id="screenSettings" class="screen">
             <div class="settings-panel">
                 <h2>⚙️ Dashboard Configuration Terminal</h2>
@@ -570,6 +588,7 @@
                         <button class="btn btn-small btn-blue" style="padding:8px 20px; font-size:1rem;" onclick="document.getElementById('fileIn').click()">📤 Load File Backups</button>
                         <input type="file" id="fileIn" style="display:none;" accept=".json" onchange="importData(event)">
                         <button id="btnMusicToggle" class="btn btn-small btn-orange" style="padding:8px 20px; font-size:1rem;" onclick="toggleMusic()">🎵 MUSIC: ON</button>
+                        <button class="btn btn-small btn-red" style="padding:8px 20px; font-size:1rem;" onclick="clearAllGameData()">🗑️ Clear Data</button>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <div>Music Volume: <input type="range" id="volMusic" min="0" max="1" step="0.1" value="0.3" oninput="updateVolumes()"></div>
@@ -585,6 +604,7 @@
             </div>
         </div>
 
+        <!-- SCREEN 7: FINAL PODIUM OVERLAY -->
         <div id="screenPodium" class="screen" style="justify-content: center; align-items: center;">
             <div class="content-card" style="height: 78vh; width: 95%; max-width: 900px; justify-content: center; align-items: center; border-color: #eccc68; margin: auto;">
                 <h2>FINAL TOURNAMENT RESULTS</h2>
@@ -697,14 +717,48 @@
             document.getElementById(`qAns_${i}`).style.display = type == 'id' ? 'block' : 'none';
         }
 
+        function compressAndStoreImage(rawBase64, callback) {
+            if (!rawBase64 || !rawBase64.startsWith('data:image')) {
+                callback(rawBase64);
+                return;
+            }
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+                
+                const MAX_WIDTH = 640;
+                const MAX_HEIGHT = 480;
+                
+                if (width > height) {
+                    if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                } else {
+                    if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+                }
+                
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.65);
+                callback(compressedDataUrl);
+            };
+            img.onerror = function() { callback(rawBase64); };
+            img.src = rawBase64;
+        }
+
         function handlePaste(e, i) {
             const items = (e.clipboardData || e.originalEvent.clipboardData).items;
             for (let item of items) {
                 if (item.type.indexOf("image") !== -1) {
                     const reader = new FileReader();
                     reader.onload = (event) => {
-                        questions[i].image = event.target.result;
-                        document.getElementById(`paste_${i}`).innerHTML = `<img src="${event.target.result}" style="height:65px;">`;
+                        compressAndStoreImage(event.target.result, (optimizedUrl) => {
+                            questions[i].image = optimizedUrl;
+                            document.getElementById(`paste_${i}`).innerHTML = `<img src="${optimizedUrl}" style="height:65px;">`;
+                        });
                     };
                     reader.readAsDataURL(item.getAsFile());
                 }
@@ -750,17 +804,53 @@
         }
 
         function importData(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
             const fr = new FileReader();
-            fr.onload = (event) => {
+            fr.onload = async (event) => {
                 try {
-                    const parsed = JSON.parse(event.target.result);
+                    let cleanRawString = event.target.result.trim();
+                    const parsed = JSON.parse(cleanRawString);
+                    
                     if (Array.isArray(parsed) && parsed.length === 26) {
-                        questions = parsed; localStorage.setItem('give_keep_v3', JSON.stringify(questions));
-                        buildSetup(); alert("Database Pack Connected Successfully!");
+                        for (let i = 0; i < parsed.length; i++) {
+                            if (parsed[i].image && parsed[i].image.startsWith('data:image')) {
+                                await new Promise((resolve) => {
+                                    compressAndStoreImage(parsed[i].image, (optimized) => {
+                                        parsed[i].image = optimized;
+                                        resolve();
+                                    });
+                                });
+                            }
+                        }
+                        
+                        questions = parsed; 
+                        localStorage.setItem('give_keep_v3', JSON.stringify(questions));
+                        buildSetup(); 
+                        alert("Database Pack Connected Successfully! Heavy graphics have been automatically optimized for smooth running.");
+                    } else {
+                        alert("Invalid structure: File must contain exactly 26 challenge loops.");
                     }
-                } catch(err) { alert("Failed to parse file."); }
+                } catch(err) { 
+                    alert("Failed to parse file. The backup data row is corrupt or cut off."); 
+                }
             };
-            fr.readAsText(e.target.files[0]);
+            fr.readAsText(file);
+        }
+
+        function clearAllGameData() {
+            if (confirm("⚠️ Warning: Are you sure you want to clear all data? This will erase all saved questions, customized answers, and game states from storage.")) {
+                localStorage.removeItem('give_keep_v3');
+                scores = { A: 0, B: 0 };
+                currentTeam = 'A';
+                used.fill(false);
+                loadData();
+                buildSetup();
+                shuffle();
+                updateScores();
+                alert("Game data cleared successfully! System restored back to defaults.");
+            }
         }
 
         function shuffle() {
